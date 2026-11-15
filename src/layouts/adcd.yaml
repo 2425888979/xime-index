@@ -9,18 +9,16 @@ repo: https://github.com/ximeiorg/xime-layouts
 license: GPL-3.0
 appVersion: ">=3.4.0"
 requiresSchemes: []
-# 截图：仅详情页展示（1~5 张）
+# 截图：仅详情页展示（1~5 张），固定到 tag
 screenshots:
-  - https://cdn.jsdelivr.net/gh/ximeiorg/xime-layouts@207b412af8e3186434b0b255db00e4f4f7a4f7f0/adcd/0.jpg
+  - https://cdn.jsdelivr.net/gh/ximeiorg/xime-layouts@20261115/adcd/0.jpg
 currentVersion: "1.0.0"
 versions:
   - version: "1.0.0"
     date: "2026-11-15"
     changelog: 首个版本：26 键按字母顺序排列（中英各一套，另含平板 12/11/11 行）。
-    # 纯文本布局（无 themes/fonts 资源）→ 单文件形态，直接引用 xime.custom.yaml。
-    # URL 固定到 commit（不用分支名），内容不可变。
     downloadUrl:
-      - url: https://cdn.jsdelivr.net/gh/ximeiorg/xime-layouts@207b412af8e3186434b0b255db00e4f4f7a4f7f0/adcd/xime.custom.yaml
-        sha256: afd9fdee1681bb573756e99a6345858f2d5c85e217f78e3caa9086444e5a45dd
-        size: "2.3 KB"
-        sizeBytes: 2357
+      # 指向 xime-layouts 的 20261115 Release 附件（根级 xime.custom.yaml 的 zip）
+      - url: https://github.com/ximeiorg/xime-layouts/releases/download/20261115/adcd.zip
+        sha256: "a09a913fe63bff745c59b1d2e6487cbe23be1679bedfe8b190e495c1106dc034"
+        size: "1.2 KB"
