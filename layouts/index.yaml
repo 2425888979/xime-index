@@ -1,7 +1,7 @@
 # Xime 键盘布局子索引
 # ⚠️ 此文件由 scripts/ci-update.py 自动生成，请勿手动编辑
 index_version: 1
-updated_at: '2026-11-15'
+updated_at: '2026-11-17'
 layouts:
 - id: adcd
   name: 字母顺序布局
