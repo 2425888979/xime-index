@@ -119,8 +119,13 @@ tags: [工具]
 pluginType: tool                 # 与插件 manifest 的 type 一致：tool/speech/emoji/backup/clipboard_sync...
 icon: "我"                        # manifest.icon：字符图标或 resources 下的图片名
 activation: multi                # manifest.activation：single / multi
-minHostVersion: '3.0.0'          # manifest.minHostVersion
-platforms: [android]             # manifest.platforms
+minHostVersion: '3.0.0'          # manifest.minHostVersion（Android 应用版本）
+platforms:                       # manifest.platforms：显式列出每个目标平台
+  - android
+  - macos
+  - windows
+  - linux
+desktopMinHostVersion: '0.1.0'   # 可选：桌面宿主应用版本（Android 忽略该键）
 capabilities:                    # 原样取自 manifest.capabilities
   tool:
     display: passive
@@ -142,6 +147,23 @@ versions:
 
 > `plugins/v2/index.yaml` 的 `index_version` 为 `2`，条目是旧扁平结构的超集，
 > 追加 `icon` / `activation` / `minHostVersion` / `platforms` / `capabilities` / `network`。
+
+#### 平台（`platforms`）怎么写
+
+写**具体平台名**，不要用 `pc` 之类的简写，也不要漏平台：
+
+| 值 | 客户端 |
+| --- | --- |
+| `android` | Android（Xime） |
+| `macos` | 曦码·逸（XimeYi，InputMethodKit） |
+| `windows` | 曦码·曜（XimeYao，TSF） |
+| `linux` | Linux 桌面（设置程序 / 本地同步服务） |
+
+- 全平台可用就写全四个；只支持部分平台就只列那几个。
+- `android` 必须保留在列表里，Android 版按 `"android" in platforms` 判断可见性
+  （它只看这一项，其余项对它透明）。
+- 桌面端读的是 `desktopMinHostVersion` / `desktopMaxHostVersion`，因为桌面应用版本
+  是 `0.x`，与 Android 的 `3.x` 不同代；两个键对 Android 是未知键，会被忽略。
 
 ### 步骤 2：生成索引
 

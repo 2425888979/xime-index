@@ -50,6 +50,9 @@ PLUGIN_V2_FIELDS = [
     "id", "name", "author", "description", "type",
     "tags", "pluginType", "icon", "activation",
     "minHostVersion", "platforms", "capabilities", "network",
+    # 桌面端专用（可选）：Android 应用是 3.x、桌面是 0.x，版本要求不能共用
+    # minHostVersion；这两个键对 Android 是未知键，由 kaml strictMode=false 忽略。
+    "desktopMinHostVersion", "desktopMaxHostVersion",
     "homepage", "license",
     "appVersion", "warning", "currentVersion", "versions",
 ]

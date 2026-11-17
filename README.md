@@ -76,6 +76,9 @@ Xime 输入法的插件、方案、模型与键盘布局市场索引。
 元数据（`icon` / `activation` / `minHostVersion` / `platforms` / `capabilities` / `network`），
 旧版 App 读取 `plugins/index.yaml`，互不影响。
 
+`platforms` 要逐个写明目标平台：`android`（Android）、`macos`（曦码·逸）、`windows`（曦码·曜）、
+`linux`（Linux 桌面），不支持某个平台就别列。桌面端读 `desktopMinHostVersion` /
+
 | ID | 名称 | 类型 | 大小 | 最低 App 版本 |
 |---|---|---|---|---|
 | `com.kingzcheung.xime.plugin.ai_reply` | AI 智能回复 | tool | 3.4 KB | >=3.0.0 |
