@@ -49,17 +49,19 @@ PLUGIN_FIELDS = [
 PLUGIN_V2_FIELDS = [
     "id", "name", "author", "description", "type",
     "tags", "pluginType", "icon", "activation",
+    # minHostVersion 只表达 Android 宿主应用版本；桌面三端各有自己的版本
+    # （0.1.0 / 0.3.1 / …），没有可共用的下限，因此不设桌面版本字段。
     "minHostVersion", "platforms", "capabilities", "network",
-    # 桌面端专用（可选）：Android 应用是 3.x、桌面是 0.x，版本要求不能共用
-    # minHostVersion；这两个键对 Android 是未知键，由 kaml strictMode=false 忽略。
-    "desktopMinHostVersion", "desktopMaxHostVersion",
     "homepage", "license",
     "appVersion", "warning", "currentVersion", "versions",
 ]
 MODEL_FIELDS = [
     "id", "name", "author", "description", "category", "size",
-    "type", "tags", "homepage", "license", "appVersion", "warning",
-    "currentVersion", "versions",
+    "type", "tags", "homepage", "license", "appVersion",
+    # 各端运行时不同（Android 走 ONNX Runtime / sherpa-onnx，桌面走 candle），
+    # 同一批模型不是每个平台都能跑：platforms 逐平台写明，客户端按它做门禁。
+    "platforms",
+    "warning", "currentVersion", "versions",
 ]
 LAYOUT_FIELDS = [
     "id", "name", "author", "description", "tags",

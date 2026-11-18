@@ -119,13 +119,12 @@ tags: [工具]
 pluginType: tool                 # 与插件 manifest 的 type 一致：tool/speech/emoji/backup/clipboard_sync...
 icon: "我"                        # manifest.icon：字符图标或 resources 下的图片名
 activation: multi                # manifest.activation：single / multi
-minHostVersion: '3.0.0'          # manifest.minHostVersion（Android 应用版本）
+minHostVersion: '3.0.0'          # manifest.minHostVersion：仅 Android 应用版本
 platforms:                       # manifest.platforms：显式列出每个目标平台
   - android
   - macos
   - windows
   - linux
-desktopMinHostVersion: '0.1.0'   # 可选：桌面宿主应用版本（Android 忽略该键）
 capabilities:                    # 原样取自 manifest.capabilities
   tool:
     display: passive
@@ -160,10 +159,12 @@ versions:
 | `linux` | Linux 桌面（设置程序 / 本地同步服务） |
 
 - 全平台可用就写全四个；只支持部分平台就只列那几个。
-- `android` 必须保留在列表里，Android 版按 `"android" in platforms` 判断可见性
-  （它只看这一项，其余项对它透明）。
-- 桌面端读的是 `desktopMinHostVersion` / `desktopMaxHostVersion`，因为桌面应用版本
-  是 `0.x`，与 Android 的 `3.x` 不同代；两个键对 Android 是未知键，会被忽略。
+- 插件里 `android` 必须保留在列表里，Android 版按 `"android" in platforms` 判断可见性
+  （它只看这一项，其余项对它透明）。模型不适用这一条：桌面专用模型可以不支持 Android
+  （见「上架新模型」的说明）。
+- `minHostVersion` 只有 Android 一种口径（`3.x`）；桌面三端版本各不相同
+  （macOS `0.1.x`、Windows `0.3.x`…），**不设桌面版本字段**，桌面端只按
+  `platforms` 做平台门禁。
 
 ### 步骤 2：生成索引
 
@@ -192,7 +193,12 @@ category: "prediction"              # 分类：prediction / asr / punctuation / 
 size: "30 MB"                       # 模型大小描述
 type: "remote"
 tags: ["AI", "ONNX"]                # 搜索标签
-appVersion: ">=2.3.0"               # 兼容的 App 版本
+appVersion: ">=2.3.0"               # 兼容的 Android App 版本；桌面端忽略
+platforms:                          # 该模型能在哪些平台跑（逐平台写明）
+  - android
+  - macos
+  - windows
+  - linux
 currentVersion: "v1.0"
 versions:
   - version: "v1.0"
@@ -224,6 +230,9 @@ size: "36 MB"
 type: "remote"
 tags: ["语音", "sherpa-onnx"]
 appVersion: ">=2.3.0"
+platforms:
+  - android
+  - windows
 currentVersion: "v1.0"
 versions:
   - version: "v1.0"
@@ -249,6 +258,20 @@ versions:
 | `punctuation` | 标点预测 |
 | `stroke` | 笔画序列 (预留) |
 | `other` | 其他 |
+
+**平台（`platforms`）怎么写：**
+
+平台名与插件一致（`android` / `macos` / `windows` / `linux`），写具体名字、不支持就别列。模型能不能跑取决于**运行时**，不是看分类：
+
+| 运行时 | 消费端 | 典型分类 |
+| --- | --- | --- |
+| ONNX Runtime | Android | `prediction` / `punctuation` / `handwriting` |
+| sherpa-onnx | Android、Windows | `asr` |
+| candle（`xime-infer`，safetensors / Transformers 权重） | 桌面三端 | `asr` / `handwriting` |
+
+- 只支持桌面就写 `macos` / `windows` / `linux`，列表里**不要出现 `android`**；此时 `appVersion`（Android 应用版本）没有意义，可以省略。
+- 桌面端不读 `appVersion`，只按 `platforms` 判断可见性；桌面应用版本各不相同（macOS `0.1.x`、Windows `0.3.x`），索引里不设桌面版本字段。
+- `android` 若在列表里，Android 版按 `"android" in platforms` 判断可见性（它只看这一项，其余项对它透明）。
 
 ### 步骤 2：生成索引
 
