@@ -148,7 +148,7 @@ models:
   - macos
   - windows
   - linux
-  warning: 仅桌面端（candle 推理）；首次下载约 1.75 GB，建议在 Wi-Fi 下进行。Android 走 sherpa-onnx，不支持该模型。
+  warning: 仅桌面端；首次下载约 1.75 GB，建议在 Wi-Fi 下进行。Android 不支持该模型。
   currentVersion: v1.0
   versions:
   - version: v1.0
