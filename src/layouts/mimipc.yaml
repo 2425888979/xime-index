@@ -15,16 +15,27 @@ description: |-
   数字键盘：数字面板改为二级页面，绕过并屏蔽二级符号；
   左右 + - * / 外多加 @；空格键居中以适应多数人习惯；
   符号与表情一起放在右边。
-tags: [布局, 快捷键]
+tags: [布局, 快捷键,配色]
 repo: https://github.com/2425888979/xime-layout_MimiPc
 license: MIT
 appVersion: ">=3.0.0"
 requiresSchemes: []
 screenshots:
-  - https://cdn.jsdelivr.net/gh/2425888979/xime-layout_MimiPc@Minic_Pc/images/zh.png
-  - https://cdn.jsdelivr.net/gh/2425888979/xime-layout_MimiPc@Minic_Pc/images/123.png
-currentVersion: "1.0.0"
+  - https://cdn.jsdelivr.net/gh/2425888979/xime-layout_MimiPc@3b4e76b/images/1.1.0/1.png
+  - https://cdn.jsdelivr.net/gh/2425888979/xime-layout_MimiPc@3b4e76b/images/1.1.0/y.png
+  - https://cdn.jsdelivr.net/gh/2425888979/xime-layout_MimiPc@3b4e76b/images/1.1.0/z.png
+currentVersion: "1.1.0"
 versions:
+  - version: "1.1.0"
+    date: "2026-11-22"
+    changelog: |-
+      以新版文档规则重写；新增配色“点缀蓝幽”
+      空格长按进符号面板；上下左右滑动出 ↑↓←→
+      标点符号细微调整；PC 快捷操作沿用上版
+    downloadUrl:
+      - url: https://github.com/2425888979/xime-layout_MimiPc/releases/download/1.1.0/xime.custom.yaml
+        sha256: "e94b6a445d2c8faf3de548e888bae9de933f69c0621a72fa10683522a51e96bd"
+        size: "11.6 KB"
   - version: "1.0.0"
     date: "2026-11-21"
     changelog: 首版
